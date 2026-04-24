@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #add8e6;
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #0a4b6e;
+        }
+        .section p {
+            color: #2c6e8f;
+            margin-bottom: 1.5rem;
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .vid-btn {
+            background: linear-gradient(135deg, #e6f4ff, #d4eaff);
+            border: 1px solid #9ac2db;
+            padding: 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            color: #035c7c;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        .vid-btn:hover {
+            background: #cae2f0;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+        }
+        .quiz-section {
+            margin-top: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .quiz-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #0a4b6e;
+        }
+        .quiz-section p {
+            color: #2c6e8f;
+            margin-bottom: 1.5rem;
+        }
+        .quiz-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .quiz-btn {
+            background: linear-gradient(135deg, #f0e6ff, #e4d4ff);
+            border: 1px solid #b99adb;
+            padding: 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            color: #4a2e7c;
+            text-align: center;
+            border: none;
+        }
+        .quiz-btn:hover {
+            background: #d4c4ff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+            .button-grid, .quiz-buttons { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="section">
+        <h2>📹 VIDEO LIBRARY</h2>
+        <p>Quick video learning</p>
+        <div class="button-grid" id="videoButtons"></div>
+    </div>
+
+    <div class="quiz-section">
+        <h2>🔘 Quizzare</h2>
+        <p>Test Your Knowledge</p>
+        <div class="quiz-buttons" id="quizButtons"></div>
+    </div>
+</div>
+
+<script>
+    const videoLinks = [
+        { url: "https://youtu.be/CWulQ1ZSE3c", title: "Working of  Electric Motor" },
+        { url: "https://youtu.be/JEqca_PN-wA", title: "Type of starter " },
+        { url: "https://youtu.be/jNXVAcy-z4s", title: "Relay vs Contactor" },
+        { url: "https://youtu.be/giEq4qP8J7k", title: "Faults of 3 Phase Induction Motor" },
+        { url: "https://youtu.be/fpXiwMGuzTs", title: "Effect of High & Low Voltage on Motor" },
+        { url: "https://youtu.be/2OMwyTRtftk", title: "Motor VS Generator VS Alternator" },
+        { url: "https://youtu.be/cuwSCutTHEI", title: "3 Phase Induction Motor" },
+        { url: "https://youtu.be/awrUxv7B-a8", title: "Single Phase Induction Motor" },
+        { url: "https://youtu.be/AQqyGNOP_3o", title: "Induction Motor Working" },
+        { url: "https://youtu.be/gVLhrLTF878", title: "Air Conditioner working" }
+    ];
+
+    const buttonNames = ["A", "i", "C", "X", "p", "Z", "1", "2", "3", "m"];
+
+    function buildVideoButtons() {
+        const container = document.getElementById('videoButtons');
+        videoLinks.forEach(video => {
+            const btn = document.createElement('a');
+            btn.className = 'vid-btn';
+            btn.textContent = video.title;
+            btn.href = video.url;
+            btn.target = '_blank';
+            btn.rel = 'noopener noreferrer';
+            container.appendChild(btn);
+        });
+    }
+
+    function buildQuizButtons() {
+        const container = document.getElementById('quizButtons');
+        buttonNames.forEach(name => {
+            const btn = document.createElement('button');
+            btn.className = 'quiz-btn';
+            btn.textContent = name;
+            btn.onclick = () => {
+                alert(`You clicked button: ${name}`);
+            };
+            container.appendChild(btn);
+        });
+    }
+
+    buildVideoButtons();
+    buildQuizButtons();
+</script>
+</body>
+</html>
